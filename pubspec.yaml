@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
 
+  html: ^0.15.4
   http: 
   package_info_plus: ^4.0.0
   url_launcher:

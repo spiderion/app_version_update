@@ -1,4 +1,5 @@
 import 'package:app_version_update/app_version_update.dart';
+import 'package:app_version_update/data/models/app_version_result.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -31,6 +32,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+
   @override
   void initState() {
     super.initState();
@@ -39,11 +41,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _verifyVersion() async {
     await AppVersionUpdate.checkForUpdates(
-      appleId: '1459706595',
-      playStoreId: 'com.byebnk.app',
-      country: 'br',
-    ).then((result) async {
-      if (result.canUpdate!) {
+      appleId: '6443636330',
+      playStoreId: 'com.birthdayai.prod',
+    ).then((AppVersionResult? result) async {
+      if (result?.canUpdate == true) {
         // await AppVersionUpdate.showBottomSheetUpdate(context: context, appVersionResult: appVersionResult)
         // await AppVersionUpdate.showPageUpdate(context: context, appVersionResult: appVersionResult)
         // or use your own widget with information received from AppVersionResult
@@ -55,16 +56,14 @@ class _MyHomePageState extends State<MyHomePage> {
           mandatory: false,
           backgroundColor: Colors.grey[200],
           title: 'Uma versão mais recente está disponível.',
-          titleTextStyle: const TextStyle(
-              color: Colors.black, fontWeight: FontWeight.w600, fontSize: 24.0),
-          content:
-              'Gostaria de atualizar seu aplicativo para a versão mais recente?',
+          titleTextStyle: const TextStyle(color: Colors.black, fontWeight: FontWeight.w600, fontSize: 24.0),
+          content: result?.releaseNotes ?? 'please update the app',
           contentTextStyle: const TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.w400,
           ),
-          updateButtonText: 'ATUALIZAR',
-          cancelButtonText: 'DEPOIS',
+          updateButtonText: 'UPDATE',
+          cancelButtonText: 'CANCE',
         );
 
         //## AppVersionUpdate.showBottomSheetUpdate ##

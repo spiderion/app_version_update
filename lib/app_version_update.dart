@@ -29,14 +29,14 @@ class AppVersionUpdate {
     String? playStoreId,
     String? country = 'us',
   }) async {
-    AppVersionData data = await fetchVersion(
-        playStoreId: playStoreId, appleId: appleId, country: country);
-
+    AppVersionData data = await fetchVersion(playStoreId: playStoreId, appleId: appleId, country: country);
     return AppVersionResult(
-        canUpdate: data.canUpdate,
-        storeUrl: data.storeUrl,
-        storeVersion: data.storeVersion,
-        platform: data.targetPlatform);
+      canUpdate: data.canUpdate,
+      storeUrl: data.storeUrl,
+      storeVersion: data.storeVersion,
+      platform: data.targetPlatform,
+      releaseNotes: data.releaseNotes,
+    );
   }
 
   /// Displays an alert dialog for the user to decide whether to enter update now or update later.
@@ -82,15 +82,15 @@ class AppVersionUpdate {
       AppVersionResult? appVersionResult,
       bool? mandatory = false,
       String? title = 'New version available',
-      TextStyle? titleTextStyle = const TextStyle(
-          fontSize: 24.0, fontWeight: FontWeight.w500, color: Colors.black),
+      TextStyle? titleTextStyle =
+          const TextStyle(fontSize: 24.0, fontWeight: FontWeight.w500, color: Colors.black),
       String? content = 'Would you like to update your application?',
-      TextStyle? contentTextStyle = const TextStyle(
-          fontSize: 16.0, fontWeight: FontWeight.w400, color: Colors.black),
-      ButtonStyle? cancelButtonStyle = const ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(Colors.redAccent)),
-      ButtonStyle? updateButtonStyle = const ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(Colors.green)),
+      TextStyle? contentTextStyle =
+          const TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400, color: Colors.black),
+      ButtonStyle? cancelButtonStyle =
+          const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.redAccent)),
+      ButtonStyle? updateButtonStyle =
+          const ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.green)),
       String? cancelButtonText = 'UPDATE LATER',
       String? updateButtonText = 'UPDATE',
       TextStyle? cancelTextStyle = const TextStyle(color: Colors.white),
